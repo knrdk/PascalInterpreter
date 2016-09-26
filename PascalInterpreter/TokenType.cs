@@ -1,4 +1,4 @@
-﻿namespace Interpreter
+﻿namespace PascalInterpreter
 {
     internal enum TokenType
     {
