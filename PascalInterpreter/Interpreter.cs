@@ -70,7 +70,7 @@ namespace PascalInterpreter
         {
             if (CurrentPosition == Program.Length)
             {
-                CurrentToken = new Token(TokenType.EndOfFile, string.Empty);
+                CurrentToken = new Token(TokenType.EndOfFile);
             }
         }
 
