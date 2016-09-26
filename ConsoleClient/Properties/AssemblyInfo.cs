@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PascalInterpreter")]
+[assembly: AssemblyTitle("ConsoleClient")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("PascalInterpreter")]
+[assembly: AssemblyProduct("ConsoleClient")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d1daa75a-b429-41e5-aeaa-3a5cbf5d9796")]
+[assembly: Guid("3ad1b2c2-0b80-4817-b1cd-0166c1bef601")]
 
 // Version information for an assembly consists of the following four values:
 //
