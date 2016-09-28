@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalInterpreter", "PascalInterpreter\PascalInterpreter.csproj", "{D1DAA75A-B429-41E5-AEAA-3A5CBF5D9796}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{3AD1B2C2-0B80-4817-B1CD-0166C1BEF601}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalInterpreter", "PascalInterpreter\PascalInterpreter.csproj", "{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1DAA75A-B429-41E5-AEAA-3A5CBF5D9796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1DAA75A-B429-41E5-AEAA-3A5CBF5D9796}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1DAA75A-B429-41E5-AEAA-3A5CBF5D9796}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1DAA75A-B429-41E5-AEAA-3A5CBF5D9796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD1B2C2-0B80-4817-B1CD-0166C1BEF601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD1B2C2-0B80-4817-B1CD-0166C1BEF601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD1B2C2-0B80-4817-B1CD-0166C1BEF601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD1B2C2-0B80-4817-B1CD-0166C1BEF601}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
