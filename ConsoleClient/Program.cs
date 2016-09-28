@@ -11,11 +11,9 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
-            var program = "2567+3";
+            var program = " 2567    - 3            ";
             var interpreter = new Interpreter(program);
-            var token = interpreter.GetNextToken();
-            token = interpreter.GetNextToken();
-            token = interpreter.GetNextToken();   
+            var result = interpreter.Expr();
         }
     }
 }

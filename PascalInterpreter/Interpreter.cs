@@ -23,6 +23,43 @@ namespace PascalInterpreter
             CurrentToken = null;
         }
 
+        public object Expr()
+        {
+            Func<Token, Token, int> Operator;
+
+            GetNextToken();
+            var left = CurrentToken;
+            Eat(TokenType.Integer);
+
+            if (Eat(TokenType.Plus))
+            {
+                Operator = (x, y) => int.Parse(x.Value) + int.Parse(y.Value);
+            }
+            else if (Eat(TokenType.Minus))
+            {
+                Operator = (x, y) => int.Parse(x.Value) - int.Parse(y.Value);
+            }
+            else
+            {
+                throw new InvalidOperationException("Invalid Token");
+            }
+
+            var right = CurrentToken;
+            Eat(TokenType.Integer);
+
+            return Operator(left, right);             
+        }
+
+        public bool Eat(TokenType tokenType)
+        {
+            if (CurrentToken.Type == tokenType)
+            {
+                GetNextToken();
+                return true;
+            }
+            return false;
+        }
+
         public Token GetNextToken()
         {
             CurrentToken = null;
@@ -34,6 +71,11 @@ namespace PascalInterpreter
             while (CurrentToken == null && (CurrentPosition + tokenLength <= Program.Length))
             {
                 var tokenCandidate = Program.Substring(CurrentPosition, tokenLength);
+                if (tokenLength == 1 && string.IsNullOrWhiteSpace(tokenCandidate))
+                {
+                    CurrentPosition++;
+                    continue;
+                }
 
                 if (TryParseOperatorToken(tokenCandidate))
                 {
