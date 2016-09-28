@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PascalInterpreter
 {
@@ -19,26 +20,10 @@ namespace PascalInterpreter
 
         public object Expr()
         {
-            Func<Token, Token, int> Operator;
-
-            var left = _Lexer.GetNextToken();
-            var op = _Lexer.GetNextToken();
-            if (op.Type == TokenType.Plus)
-            {
-                Operator = (x, y) => int.Parse(x.Value) + int.Parse(y.Value);
-            }
-            else if (op.Type == TokenType.Minus)
-            {
-                Operator = (x, y) => int.Parse(x.Value) - int.Parse(y.Value);
-            }
-            else
-            {
-                throw new InvalidOperationException("Invalid Token");
-            }
-
-            var right = _Lexer.GetNextToken();
-            
-            return Operator(left, right);
+            var tokens = _Lexer.ReadTokens();
+            var parser = new Parser();
+            parser.Parse(tokens);
+            return parser.GetResult();
         }
     }
 }

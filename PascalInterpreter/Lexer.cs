@@ -23,52 +23,55 @@ namespace PascalInterpreter
             CurrentToken = null;
         }
 
-        public Token GetNextToken()
+        public IEnumerable<Token> ReadTokens()
         {
-            CurrentToken = null;
-
-            CheckEndOfProgram();
-
-            var tokenLength = 1;
-            int? lastNumber = null;
-            while (CurrentToken == null && (CurrentPosition + tokenLength <= Program.Length))
+            while (true)
             {
-                var tokenCandidate = Program.Substring(CurrentPosition, tokenLength);
-                if (tokenLength == 1 && string.IsNullOrWhiteSpace(tokenCandidate))
+                CurrentToken = null;
+
+                CheckEndOfProgram();
+                if(CurrentToken!=null && CurrentToken.Type == TokenType.EndOfFile)
                 {
-                    CurrentPosition++;
-                    continue;
+                    yield return CurrentToken;
+                    yield break;
                 }
 
-                if (TryParseOperatorToken(tokenCandidate))
+                var tokenLength = 1;
+                int? lastNumber = null;
+                while (CurrentToken == null && (CurrentPosition + tokenLength <= Program.Length))
                 {
-                    break;
-                }
+                    var tokenCandidate = Program.Substring(CurrentPosition, tokenLength);
+                    if (tokenLength == 1 && string.IsNullOrWhiteSpace(tokenCandidate))
+                    {
+                        CurrentPosition++;
+                        continue;
+                    }
 
-                int currentNumber;
-                var isNumber = int.TryParse(tokenCandidate, out currentNumber);
-                if (isNumber)
-                {
-                    lastNumber = currentNumber;
-                }
-                else if (lastNumber.HasValue)
-                {
-                    var token = new Token(TokenType.Integer, lastNumber.Value.ToString());
-                    CurrentPosition += (tokenLength - 1);
-                    CurrentToken = token;
-                    break;
-                }
+                    if (TryParseOperatorToken(tokenCandidate))
+                    {
+                        break;
+                    }
 
-                tokenLength++;
+                    int currentNumber;
+                    var isNumber = int.TryParse(tokenCandidate, out currentNumber);
+                    if (isNumber)
+                    {
+                        lastNumber = currentNumber;
+                    }
+                    else if (lastNumber.HasValue)
+                    {
+                        var token = new Token(TokenType.Integer, lastNumber.Value.ToString());
+                        CurrentPosition += (tokenLength - 1);
+                        CurrentToken = token;
+                        break;
+                    }
+
+                    tokenLength++;
+                }
+                TryParseLastTokenAsNumber(lastNumber);
+
+                yield return CurrentToken;
             }
-            TryParseLastTokenAsNumber(lastNumber);
-
-            if (CurrentToken == null)
-            {
-                throw new Exception();
-            }
-
-            return CurrentToken;
         }
 
         private void CheckEndOfProgram()
