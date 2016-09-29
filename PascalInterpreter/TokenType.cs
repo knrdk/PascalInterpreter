@@ -8,6 +8,8 @@
         Minus,
         Multiplication,
         Division,
+        BracketLeft,
+        BracketRight,
         EndOfFile
     }
 }

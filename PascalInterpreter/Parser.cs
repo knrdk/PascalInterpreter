@@ -38,15 +38,31 @@ namespace PascalInterpreter
 
         private int Term()
         {
-            var result = Factor();
+            var result = Brackets();
             while (_Enumerator.Current.Type.IsMultiplicationOrDivision())
             {
                 var token = _Enumerator.Current;
                 Eat(token.Type);
                 var aggregateOperation = GetAggregateFunction(token);
-                result = aggregateOperation(result, Term());
+                result = aggregateOperation(result, Brackets());
             }
             return result;
+        }
+
+        private int Brackets()
+        {
+            var token = _Enumerator.Current;
+            if(token.Type == TokenType.BracketLeft)
+            {
+                Eat(TokenType.BracketLeft);
+                var output = Expr();
+                Eat(TokenType.BracketRight);
+                return output;
+            }
+            else
+            {
+                return Factor();
+            }
         }
 
         private int Factor()
