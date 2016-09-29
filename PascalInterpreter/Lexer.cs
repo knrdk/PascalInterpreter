@@ -109,7 +109,9 @@ namespace PascalInterpreter
             return new Dictionary<string, Token>()
             {
                 ["+"] = new Token(TokenType.Plus, "+"),
-                ["-"] = new Token(TokenType.Minus, "-")
+                ["-"] = new Token(TokenType.Minus, "-"),
+                ["*"] = new Token(TokenType.Multiplication, "*"),
+                ["/"] = new Token(TokenType.Division, "/")
             };
         }
     }

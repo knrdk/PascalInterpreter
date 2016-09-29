@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PascalInterpreter;
+﻿using PascalInterpreter;
 
 namespace ConsoleClient
 {
@@ -11,7 +6,7 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
-            var program = " 2567    - 3     + 4 + 6 - 32       ";
+            var program = "14 + 2 *3-6 /2";
             var interpreter = new Interpreter(program);
             var result = interpreter.Expr();
         }

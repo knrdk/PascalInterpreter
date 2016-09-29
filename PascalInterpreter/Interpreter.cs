@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PascalInterpreter
 {
@@ -21,9 +19,8 @@ namespace PascalInterpreter
         public object Expr()
         {
             var tokens = _Lexer.ReadTokens();
-            var parser = new Parser();
-            parser.Parse(tokens);
-            return parser.GetResult();
+            var parser = new Parser(tokens);
+            return parser.Parse();
         }
     }
 }

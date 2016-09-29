@@ -5,102 +5,77 @@ namespace PascalInterpreter
 {
     public class Parser
     {
-        private State CurrentState = State.Start;
-        private Token Number;
-        private Token Operator;
-
-        public void Parse(IEnumerable<Token> tokens)
+        IEnumerator<Token> _Enumerator;
+        
+        public Parser(IEnumerable<Token> tokens)
         {
-            foreach (var token in tokens)
+            if (tokens == null)
             {
-                switch (CurrentState)
-                {
-                    case State.Start:
-                        StartState(token);
-                        break;
-                    case State.NumberReceived:
-                        NumberReceivedState(token);
-                        break;
-                    case State.OperatorReceived:
-                        OperatorReceivedState(token);
-                        break;
-                    case State.End:
-                        return;
-                }
+                throw new Exception("Tokens cannot be null");
+            }
+            _Enumerator = tokens.GetEnumerator();
+        }
+
+        public object Parse()
+        {
+            _Enumerator.MoveNext();
+            var result = Expr();
+            return result;
+        }
+
+        private int Expr()
+        {
+            var result = Term();
+            while (_Enumerator.Current.Type.IsAdditionOrSubtraction())
+            {
+                var token = _Enumerator.Current;
+                Eat(token.Type);
+                var aggregateOperation = GetAggregateFunction(token);
+                result = aggregateOperation(result, Term());
+            }
+            return result;
+        }
+
+        private int Term()
+        {
+            var result = Factor();
+            while (_Enumerator.Current.Type.IsMultiplicationOrDivision())
+            {
+                var token = _Enumerator.Current;
+                Eat(token.Type);
+                var aggregateOperation = GetAggregateFunction(token);
+                result = aggregateOperation(result, Term());
+            }
+            return result;
+        }
+
+        private int Factor()
+        {
+            var token = _Enumerator.Current;
+            Eat(TokenType.Integer);
+            return int.Parse(token.Value);
+        }
+
+        private void Eat(TokenType tokenType)
+        {
+            if(_Enumerator.Current.Type == tokenType)
+            {
+                _Enumerator.MoveNext();
             }
         }
 
-        public object GetResult()
+        private Func<int, int, int> GetAggregateFunction(Token operatorToken)
         {
-            if (CurrentState == State.End)
-            {
-                return int.Parse(Number.Value);
-            }
-            throw new Exception("Cannot get result before parsing");
-        }
-
-        private void StartState(Token token)
-        {
-            switch (token.Type)
-            {
-                case TokenType.EndOfFile:
-                    CurrentState = State.End;
-                    break;
-                case TokenType.Integer:
-                    Number = token;
-                    CurrentState = State.NumberReceived;
-                    break;
-                default:
-                    throw new Exception();
-            }
-        }
-
-        private void NumberReceivedState(Token token)
-        {
-            if (token.Type.IsOperator())
-            {
-                Operator = token;
-                CurrentState = State.OperatorReceived;
-                return;
-            }
-            if (token.Type == TokenType.EndOfFile)
-            {
-                CurrentState = State.End;
-                return;
-            }
-            throw new Exception();
-        }
-
-        private void OperatorReceivedState(Token token)
-        {
-            if (token.Type == TokenType.Integer)
-            {
-                var aggregator = GetAggregateFunction();
-                Number = aggregator(Number, token);
-                CurrentState = State.NumberReceived;
-            }
-        }
-
-        private Func<Token, Token, Token> GetAggregateFunction()
-        {
-            switch (Operator.Type)
+            switch (operatorToken.Type)
             {
                 case TokenType.Minus:
-                    return (x, y) =>
-                    {
-                        var left = int.Parse(x.Value);
-                        var right = int.Parse(y.Value);
-                        var newValue = left - right;
-                        return new Token(TokenType.Integer, newValue.ToString());
-                    };
+                    return (x, y) => x - y;
                 case TokenType.Plus:
-                    return (x, y) =>
-                    {
-                        var left = int.Parse(x.Value);
-                        var right = int.Parse(y.Value);
-                        var newValue = left + right;
-                        return new Token(TokenType.Integer, newValue.ToString());
-                    };
+                    return (x, y) => x + y;
+                case TokenType.Multiplication:
+                    return (x, y) => x * y;
+                case TokenType.Division:
+                    return (x, y) => x / y;
                 default:
                     throw new Exception();
             }
