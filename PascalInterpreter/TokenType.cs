@@ -6,6 +6,8 @@
         Integer,
         Plus,
         Minus,
+        Multiplication,
+        Division,
         EndOfFile
     }
 }
