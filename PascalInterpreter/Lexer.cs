@@ -30,7 +30,7 @@ namespace PascalInterpreter
                 CurrentToken = null;
 
                 CheckEndOfProgram();
-                if(CurrentToken!=null && CurrentToken.Type == TokenType.EndOfFile)
+                if (CurrentToken != null && CurrentToken.Type == TokenType.EndOfFile)
                 {
                     yield return CurrentToken;
                     yield break;
@@ -111,7 +111,9 @@ namespace PascalInterpreter
                 ["+"] = new Token(TokenType.Plus, "+"),
                 ["-"] = new Token(TokenType.Minus, "-"),
                 ["*"] = new Token(TokenType.Multiplication, "*"),
-                ["/"] = new Token(TokenType.Division, "/")
+                ["/"] = new Token(TokenType.Division, "/"),
+                ["("] = new Token(TokenType.BracketLeft, "("),
+                [")"] = new Token(TokenType.BracketRight, ")")
             };
         }
     }
