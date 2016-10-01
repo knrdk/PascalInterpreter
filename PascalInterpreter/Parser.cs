@@ -38,18 +38,18 @@ namespace PascalInterpreter
 
         private int Term()
         {
-            var result = Brackets();
+            var result = Factor();
             while (_Enumerator.Current.Type.IsMultiplicationOrDivision())
             {
                 var token = _Enumerator.Current;
                 Eat(token.Type);
                 var aggregateOperation = GetAggregateFunction(token);
-                result = aggregateOperation(result, Brackets());
+                result = aggregateOperation(result, Factor());
             }
             return result;
         }
 
-        private int Brackets()
+        private int Factor()
         {
             var token = _Enumerator.Current;
             if(token.Type == TokenType.BracketLeft)
@@ -61,15 +61,9 @@ namespace PascalInterpreter
             }
             else
             {
-                return Factor();
+                Eat(TokenType.Integer);
+                return int.Parse(token.Value);
             }
-        }
-
-        private int Factor()
-        {
-            var token = _Enumerator.Current;
-            Eat(TokenType.Integer);
-            return int.Parse(token.Value);
         }
 
         private void Eat(TokenType tokenType)
