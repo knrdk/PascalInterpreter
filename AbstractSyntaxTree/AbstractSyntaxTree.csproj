@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}</ProjectGuid>
+    <ProjectGuid>{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PascalInterpreter</RootNamespace>
-    <AssemblyName>PascalInterpreter</AssemblyName>
+    <RootNamespace>AbstractSyntaxTree</RootNamespace>
+    <AssemblyName>AbstractSyntaxTree</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,16 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interpreter.cs" />
-    <Compile Include="Lexer.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="AbstractNode.cs" />
+    <Compile Include="BinaryOperatorNode.cs" />
+    <Compile Include="NumericNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AbstractSyntaxTree\AbstractSyntaxTree.csproj">
-      <Project>{f971b184-348c-4926-9a0f-7df6a9a6d9e7}</Project>
-      <Name>AbstractSyntaxTree</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{81d2bd87-b16b-4b52-b7f6-9797c6d7503e}</Project>
       <Name>Model</Name>

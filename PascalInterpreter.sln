@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PascalInterpreter", "PascalInterpreter\PascalInterpreter.csproj", "{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractSyntaxTree", "AbstractSyntaxTree\AbstractSyntaxTree.csproj", "{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{81D2BD87-B16B-4B52-B7F6-9797C6D7503E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3ACEA4C-5620-4429-9EAD-2E7BC726FB62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F971B184-348C-4926-9A0F-7DF6A9A6D9E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81D2BD87-B16B-4B52-B7F6-9797C6D7503E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81D2BD87-B16B-4B52-B7F6-9797C6D7503E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81D2BD87-B16B-4B52-B7F6-9797C6D7503E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81D2BD87-B16B-4B52-B7F6-9797C6D7503E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

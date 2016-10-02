@@ -1,4 +1,4 @@
-﻿namespace PascalInterpreter
+﻿namespace Model
 {
     public enum TokenType
     {
